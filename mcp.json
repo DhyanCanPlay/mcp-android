@@ -1,0 +1,178 @@
+{
+  "mcpVersion": "2024-11-05",
+  "name": "mcp-android-server",
+  "version": "1.0.0",
+  "description": "MCP server for Android device control via ADB",
+  "author": "DhyanCanPlay",
+  "license": "MIT",
+  "homepage": "https://github.com/DhyanCanPlay/mcp-android",
+  "capabilities": {
+    "tools": [
+      {
+        "name": "setWifiState",
+        "description": "Enables or disables the Wi-Fi radio",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "boolean",
+              "description": "Set to true to enable Wi-Fi, false to disable"
+            }
+          },
+          "required": ["state"]
+        }
+      },
+      {
+        "name": "setBluetoothState",
+        "description": "Enables or disables the Bluetooth radio",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "boolean",
+              "description": "Set to true to enable Bluetooth, false to disable"
+            }
+          },
+          "required": ["state"]
+        }
+      },
+      {
+        "name": "setTorchState",
+        "description": "Activates or deactivates the camera flash (torch)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "boolean",
+              "description": "Set to true to turn the torch on, false to turn it off"
+            },
+            "brightnessLevel": {
+              "type": "integer",
+              "description": "For supported devices, sets the brightness level from 1 to 100",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          "required": ["state"]
+        }
+      },
+      {
+        "name": "getSensorData",
+        "description": "Retrieves a single reading from a specified hardware sensor",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "sensorType": {
+              "type": "string",
+              "description": "The type of sensor to read from",
+              "enum": ["accelerometer", "gyroscope", "magnetometer", "gps", "proximity", "light", "pressure", "humidity"]
+            }
+          },
+          "required": ["sensorType"]
+        }
+      },
+      {
+        "name": "tap",
+        "description": "Performs a single, instantaneous tap at a specific screen coordinate",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "integer",
+              "description": "The x-coordinate of the tap"
+            },
+            "y": {
+              "type": "integer", 
+              "description": "The y-coordinate of the tap"
+            }
+          },
+          "required": ["x", "y"]
+        }
+      },
+      {
+        "name": "longPress",
+        "description": "Performs a tap and hold gesture at a specific coordinate for a given duration",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "integer",
+              "description": "The x-coordinate of the long press"
+            },
+            "y": {
+              "type": "integer",
+              "description": "The y-coordinate of the long press"
+            },
+            "durationMs": {
+              "type": "integer",
+              "description": "The duration of the press in milliseconds"
+            }
+          },
+          "required": ["x", "y", "durationMs"]
+        }
+      },
+      {
+        "name": "swipe",
+        "description": "Performs a swipe gesture from a start coordinate to an end coordinate over a specific duration",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "startX": {
+              "type": "integer",
+              "description": "Starting x-coordinate"
+            },
+            "startY": {
+              "type": "integer", 
+              "description": "Starting y-coordinate"
+            },
+            "endX": {
+              "type": "integer",
+              "description": "Ending x-coordinate"
+            },
+            "endY": {
+              "type": "integer",
+              "description": "Ending y-coordinate"
+            },
+            "durationMs": {
+              "type": "integer",
+              "description": "Duration of the swipe in milliseconds"
+            }
+          },
+          "required": ["startX", "startY", "endX", "endY", "durationMs"]
+        }
+      },
+      {
+        "name": "getSystemSetting",
+        "description": "Retrieves the value of a setting from the 'system' namespace",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "key": {
+              "type": "string",
+              "description": "The key of the setting to retrieve (e.g., 'screen_brightness')"
+            }
+          },
+          "required": ["key"]
+        }
+      },
+      {
+        "name": "setSystemSetting",
+        "description": "Modifies the value of a setting in the 'system' namespace",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "key": {
+              "type": "string",
+              "description": "The key of the setting to modify (e.g., 'screen_off_timeout')"
+            },
+            "value": {
+              "type": "string",
+              "description": "The value to set for the key"
+            }
+          },
+          "required": ["key", "value"]
+        }
+      }
+    ]
+  }
+}
