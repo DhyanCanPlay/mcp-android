@@ -1,4 +1,4 @@
-# 🚧 My Awesome Project 🚧
+#            🚧 ANDROID MCP Project 🚧
 
 <p align="center">
   <em>Coming Soon! This project is currently under NOT SO HEAVY development.</em>
