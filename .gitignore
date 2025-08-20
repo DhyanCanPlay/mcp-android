@@ -1,0 +1,18 @@
+# .gitignore for mcp-android
+# Ignore node modules and Python virtual environments
+node_modules/
+.env
+*.pyc
+__pycache__/
+.DS_Store
+*.log
+*.sqlite3
+*.db
+.vscode/
+.idea/
+*.bak
+*.swp
+# Ignore OS-specific files
+Thumbs.db
+# Ignore credentials and secrets
+secrets.json
